@@ -3,7 +3,7 @@
  */
 package com.markcrowe.datastructures.support;
 
-import com.markcrowe.datastructures.implementation.PriorityQueueClass;
+import com.markcrowe.datastructures.PriorityQueueClass;
 
 /**
  * Patient Priority Queue

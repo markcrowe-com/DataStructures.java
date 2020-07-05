@@ -6,7 +6,7 @@ package com.markcrowe.algorithms;
 import com.markcrowe.datastructures.Queue;
 import com.markcrowe.datastructures.Stack;
 import com.markcrowe.datastructures.WeightedGraph;
-import com.markcrowe.datastructures.implementation.StackClass;
+import com.markcrowe.datastructures.StackClass;
 import java.util.List;
 
 /**

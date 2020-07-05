@@ -3,7 +3,7 @@
  */
 package com.markcrowe.datastructures.support;
 
-import com.markcrowe.datastructures.implementation.BinarySearchTreeClass;
+import com.markcrowe.datastructures.BinarySearchTreeClass;
 
 /**
  * Integer Binary Search Tree

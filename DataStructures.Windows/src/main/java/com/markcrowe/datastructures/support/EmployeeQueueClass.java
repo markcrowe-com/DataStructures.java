@@ -3,7 +3,7 @@
  */
 package com.markcrowe.datastructures.support;
 
-import com.markcrowe.datastructures.implementation.QueueClass;
+import com.markcrowe.datastructures.QueueClass;
 
 /**
  *

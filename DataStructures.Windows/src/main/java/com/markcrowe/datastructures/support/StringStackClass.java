@@ -3,7 +3,7 @@
  */
 package com.markcrowe.datastructures.support;
 
-import com.markcrowe.datastructures.implementation.StackClass;
+import com.markcrowe.datastructures.StackClass;
 
 /**
  * Stack for String Type

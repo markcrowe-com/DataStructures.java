@@ -6,7 +6,7 @@ package com.markcrowe.datastructures.windows;
 import com.markcrowe.algorithms.DepthFirstSearch;
 import com.markcrowe.datastructures.WeightedEdge;
 import com.markcrowe.datastructures.WeightedGraph;
-import com.markcrowe.datastructures.implementation.WeightedGraphClass;
+import com.markcrowe.datastructures.WeightedGraphClass;
 import com.markcrowe.datastructures.support.Airport;
 import java.util.ArrayList;
 import java.util.List;

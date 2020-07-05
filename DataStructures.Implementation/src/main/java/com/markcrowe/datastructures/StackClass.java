@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020 Mark Crowe <https://github.com/markcrowe-com>. All rights reserved.
  */
-package com.markcrowe.datastructures.implementation;
+package com.markcrowe.datastructures;
 
 import com.markcrowe.datastructures.Stack;
 import java.util.EmptyStackException;
