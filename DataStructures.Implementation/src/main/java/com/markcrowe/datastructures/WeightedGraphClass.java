@@ -3,13 +3,11 @@
  */
 package com.markcrowe.datastructures;
 
-import com.markcrowe.datastructures.Queue;
-import com.markcrowe.datastructures.WeightedEdge;
-import com.markcrowe.datastructures.WeightedGraph;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * WeightedGraph Implementation
  *
  * @param <TVertex>
  */
@@ -64,7 +62,6 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 		int startVertexIndex = this.IndexOf(startVertex);
 		int endVertexIndex = this.IndexOf(endVertex);
 		this.AddEdge(startVertexIndex, endVertexIndex, edgeWeight);
-
 	}
 	@Override
 	public void RemoveEdge(TVertex startVertex, TVertex endVertex)
@@ -113,6 +110,7 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 		}
 		//this.list.clear();
 	}
+	@Override
 	public void DeleteAllEdges()
 	{
 		for(int startVertexIndex = 0; startVertexIndex < this.numberOfVertices; startVertexIndex++)
@@ -124,8 +122,7 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 		}
 	}
 	@Override
-	public Queue<TVertex> EdgeConnectedVertices(TVertex vertex
-	)
+	public Queue<TVertex> EdgeConnectedVertices(TVertex vertex)
 	{
 		Queue<TVertex> connectedVertices = new QueueClass<>();
 		int startVertexIndex = this.IndexOf(vertex);
@@ -144,6 +141,7 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 		int edgeWeight = this.WeightOfEdgeOf(startVertex, endVertex);
 		return EdgeValueIsNotNull(edgeWeight);
 	}
+	@Override
 	public int WeightOfEdgeOf(TVertex startVertex, TVertex endVertex)
 	{
 		int startVertexIndex = this.IndexOf(startVertex);
@@ -174,26 +172,22 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 		return !this.IsFull();
 	}
 	@Override
-	public boolean IsMarked(TVertex vertex
-	)
+	public boolean IsMarked(TVertex vertex)
 	{
 		return this.IsMarked(this.IndexOf(vertex));
 	}
 	@Override
-	public boolean IsNotMarked(TVertex vertex
-	)
+	public boolean IsNotMarked(TVertex vertex)
 	{
 		return !this.IsMarked(vertex);
 	}
 	@Override
-	public boolean IsMarked(int vertexIndex
-	)
+	public boolean IsMarked(int vertexIndex)
 	{
 		return (this.markedVertexList[vertexIndex] == true);
 	}
 	@Override
-	public boolean IsNotMarked(int vertexIndex
-	)
+	public boolean IsNotMarked(int vertexIndex)
 	{
 		return !this.IsMarked(vertexIndex);
 	}
@@ -259,7 +253,6 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 	{
 		this.markedVertexList[vertexIndex] = true;
 	}
-
 	//
 	//	private fields
 	//
@@ -293,7 +286,6 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 	{
 		return vertexIndex == NullVertexIndex;
 	}
-
 	@Override
 	public String PrintPath()
 	{
@@ -312,7 +304,6 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 		}
 		return output;
 	}
-
 	//
 	//	status
 	//
@@ -326,7 +317,6 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 			System.out.println(" does not exist.");
 			return false;
 		}
-
 		int j = this.IndexOf(vertex2);
 		if(j == -1)
 		{
@@ -335,8 +325,6 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 			System.out.println(" does not exist.");
 			return false;
 		}
-
 		return true; //isEdge(i, j);
 	}
-
 }
