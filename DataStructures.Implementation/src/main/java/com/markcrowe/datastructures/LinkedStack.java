@@ -7,12 +7,13 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 
 /**
+ * Linked Stack implementation of Stack
  *
  * @param <T>
  */
-public class StackClass<T> implements Stack<T>
+public class LinkedStack<T> implements Stack<T>
 {
-	public StackClass()
+	public LinkedStack()
 	{
 		this.Initialize();
 	}

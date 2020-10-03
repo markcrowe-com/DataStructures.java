@@ -3,10 +3,10 @@
  */
 package com.markcrowe.algorithms;
 
+import com.markcrowe.datastructures.LinkedStack;
 import com.markcrowe.datastructures.Queue;
 import com.markcrowe.datastructures.Stack;
 import com.markcrowe.datastructures.WeightedGraph;
-import com.markcrowe.datastructures.StackClass;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ public class DepthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
 	@Override
 	public boolean Search(WeightedGraph<TVertex> graph, TVertex startVertex, TVertex endVertex, List<TVertex> path)
 	{
-		Stack<TVertex> stack = new StackClass<>();
+		Stack<TVertex> stack = new LinkedStack<>();
 		Queue<TVertex> vertexQueue;
 
 		boolean found = false;
