@@ -3,7 +3,6 @@
  */
 package com.markcrowe.datastructures;
 
-import com.markcrowe.datastructures.Stack;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
@@ -21,39 +20,49 @@ public class StackClass<T> implements Stack<T>
 	//	Public Methods - Status
 	//
 	@Override
-	public int Size()
+	public int size()
 	{
 		return this.size;
 	}
 	@Override
-	public Boolean IsEmpty()
+	public boolean isEmpty()
 	{
 		//return (this.size == 0);
 		return this.firstLinkInChain == null;
+	}
+	@Override
+	public boolean isFull()
+	{
+		return size == Integer.MAX_VALUE;
 	}
 	//
 	//	Public Methods
 	//
 	@Override
-	public T Peek()
+	public void clear()
 	{
-		if(this.IsEmpty())
+		this.Initialize();
+	}
+	@Override
+	public T peek()
+	{
+		if(this.isEmpty())
 		{
 			throw new EmptyStackException();
 		}
 		return this.firstLinkInChain.Item();
 	}
 	@Override
-	public T Pop()
+	public T pop()
 	{
-		T firstItem = this.Peek();
+		T firstItem = this.peek();
 		ChainLinkClass<T> chainLink = this.ReturnAndRemoveFirstLinkInChain();
 		//RemoveFirstLinkInChain
 		//	Delete chainLink
 		return firstItem;
 	}
 	@Override
-	public void Push(T item)
+	public void push(T item)
 	{
 		//
 		//	Step 1
@@ -63,11 +72,6 @@ public class StackClass<T> implements Stack<T>
 		//	Step 2
 		//
 		this.Push(chainLink);
-	}
-	@Override
-	public void Clear()
-	{
-		this.Initialize();
 	}
 	@Override
 	public Iterator<T> iterator()

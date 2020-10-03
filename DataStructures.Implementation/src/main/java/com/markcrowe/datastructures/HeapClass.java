@@ -3,8 +3,6 @@
  */
 package com.markcrowe.datastructures;
 
-import com.markcrowe.datastructures.CompareResult;
-import com.markcrowe.datastructures.Heap;
 import java.util.Comparator;
 
 /**

@@ -25,11 +25,11 @@ public class DepthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
 		TVertex candiateVertex;
 
 		graph.ClearMarks();
-		stack.Push(startVertex);
+		stack.push(startVertex);
 		do
 		{
-			candiateVertex = stack.Peek();
-			stack.Pop();
+			candiateVertex = stack.peek();
+			stack.pop();
 
 			if(candiateVertex == endVertex)
 			{
@@ -49,13 +49,13 @@ public class DepthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
 						item = vertexQueue.Dequeue();
 						if(!graph.IsMarked(item))
 						{
-							stack.Push(item);
+							stack.push(item);
 						}
 					}
 				}
 			}
 		}
-		while(!stack.IsEmpty() && !found);
+		while(!stack.isEmpty() && !found);
 		return found;
 	}
 }
