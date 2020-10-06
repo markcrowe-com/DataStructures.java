@@ -11,6 +11,12 @@
 			<artifactId>DataStructures</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.markcrowe</groupId>
+			<artifactId>DataStructures.Implementation</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+		</dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
