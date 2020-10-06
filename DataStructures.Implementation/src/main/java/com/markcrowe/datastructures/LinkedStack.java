@@ -7,7 +7,7 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 
 /**
- * Linked Stack implementation of Stack
+ * Linked implementation of Stack
  *
  * @param <T>
  */
@@ -15,16 +15,11 @@ public class LinkedStack<T> implements Stack<T>
 {
 	public LinkedStack()
 	{
-		this.Initialize();
+		this.initialize();
 	}
 	//
 	//	Public Methods - Status
 	//
-	@Override
-	public int size()
-	{
-		return this.size;
-	}
 	@Override
 	public boolean isEmpty()
 	{
@@ -36,14 +31,6 @@ public class LinkedStack<T> implements Stack<T>
 	{
 		return size == Integer.MAX_VALUE;
 	}
-	//
-	//	Public Methods
-	//
-	@Override
-	public void clear()
-	{
-		this.Initialize();
-	}
 	@Override
 	public T peek()
 	{
@@ -51,28 +38,32 @@ public class LinkedStack<T> implements Stack<T>
 		{
 			throw new EmptyStackException();
 		}
-		return this.firstLinkInChain.Item();
+		return this.firstLinkInChain.getValue();
+	}
+	@Override
+	public int size()
+	{
+		return this.size;
+	}
+	//
+	//	Public Methods
+	//
+	@Override
+	public void clear()
+	{
+		this.initialize();
 	}
 	@Override
 	public T pop()
 	{
 		T firstItem = this.peek();
-		ChainLinkClass<T> chainLink = this.ReturnAndRemoveFirstLinkInChain();
-		//RemoveFirstLinkInChain
-		//	Delete chainLink
+		this.removeFirstLinkInChain();
 		return firstItem;
 	}
 	@Override
 	public void push(T item)
 	{
-		//
-		//	Step 1
-		//
-		ChainLinkClass<T> chainLink = new ChainLinkClass<>(item);
-		//
-		//	Step 2
-		//
-		this.Push(chainLink);
+		this.insertChainLink(new ChainLinkClass<>(item));
 	}
 	@Override
 	public Iterator<T> iterator()
@@ -82,27 +73,27 @@ public class LinkedStack<T> implements Stack<T>
 	//
 	//	Private Methods
 	//
-	private void Push(ChainLinkClass<T> chainLink)
+	private void insertChainLink(ChainLinkClass<T> chainLink)
 	{
-		chainLink.NextNodeInList(this.firstLinkInChain);
+		chainLink.setNextNodeInList(this.firstLinkInChain);
 		this.firstLinkInChain = chainLink;
 		this.size++;
 	}
 	private ChainLinkClass<T> ReturnAndRemoveFirstLinkInChain()
 	{
 		ChainLinkClass<T> chainLink = this.firstLinkInChain;
-		this.RemoveFirstLinkInChain();
+		this.removeFirstLinkInChain();
 		return chainLink;
 	}
-	private void RemoveFirstLinkInChain()
+	private void removeFirstLinkInChain()
 	{
-		this.firstLinkInChain = firstLinkInChain.NextNodeInList();
+		this.firstLinkInChain = firstLinkInChain.getNextNodeInList();
 		this.size--;
 	}
 	//
 	//	Private Methods
 	//
-	private void Initialize()
+	private void initialize()
 	{
 		this.firstLinkInChain = null;
 		this.size = 0;
