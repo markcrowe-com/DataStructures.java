@@ -9,9 +9,9 @@ import java.util.Iterator;
  *
  * @param <T>
  */
-public class ChainLinkIteratorClass<T> implements Iterator<T>
+class ChainLinkIteratorClass<T> implements Iterator<T>
 {
-	public ChainLinkIteratorClass(ChainLinkClass<T> firstLinkInChain)
+	ChainLinkIteratorClass(ChainLinkClass<T> firstLinkInChain)
 	{
 		this.firstLinkInChain = firstLinkInChain;
 		this.Reset();
@@ -21,7 +21,7 @@ public class ChainLinkIteratorClass<T> implements Iterator<T>
 	//
 	public T Current()
 	{
-		return current.Item();
+		return current.getValue();
 	}
 	@Override
 	public boolean hasNext()
@@ -34,8 +34,8 @@ public class ChainLinkIteratorClass<T> implements Iterator<T>
 	@Override
 	public T next()
 	{
-		T item = current.Item();
-		current = current.NextNodeInList();
+		T item = current.getValue();
+		current = current.getNextNodeInList();
 		return item;
 
 	}

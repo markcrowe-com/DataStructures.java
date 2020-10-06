@@ -9,14 +9,14 @@ package com.markcrowe.datastructures;
  */
 class ChainLinkClass<T>
 {
-	public ChainLinkClass(T item, ChainLinkClass<T> nextLinkInChain)
+	public ChainLinkClass(T value, ChainLinkClass<T> nextLinkInChain)
 	{
-		this.item = item;
+		this.value = value;
 		this.nextLinkInChain = nextLinkInChain;
 	}
-	public ChainLinkClass(T item)
+	public ChainLinkClass(T value)
 	{
-		this(item, null);
+		this(value, null);
 	}
 	public ChainLinkClass()
 	{
@@ -25,25 +25,25 @@ class ChainLinkClass<T>
 	//
 	//	Public Methods
 	//
-	public T Item()
+	public T getValue()
 	{
-		return item;
+		return value;
 	}
-	public void Item(T item)
+	public void setValue(T value)
 	{
-		this.item = item;
+		this.value = value;
 	}
-	public ChainLinkClass<T> NextNodeInList()
+	public ChainLinkClass<T> getNextNodeInList()
 	{
 		return nextLinkInChain;
 	}
-	public void NextNodeInList(ChainLinkClass<T> nexLinkInTheChain)
+	public void setNextNodeInList(ChainLinkClass<T> nexLinkInTheChain)
 	{
 		this.nextLinkInChain = nexLinkInTheChain;
 	}
 	//
 	//	Private Fields
 	//
-	private T item;
 	private ChainLinkClass<T> nextLinkInChain;
+	private T value;
 }
