@@ -22,6 +22,8 @@ public interface BinarySearchNode<T>
 	//	modifiers
 	//
 	void attachValueOnNode(T value);
+	BinarySearchNode<T> attachLeftValue(T value);
+	BinarySearchNode<T> attachRightValue(T value);
 	//
 	//	Methods
 	//

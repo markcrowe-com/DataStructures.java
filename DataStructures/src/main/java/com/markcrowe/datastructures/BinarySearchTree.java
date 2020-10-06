@@ -21,6 +21,7 @@ public interface BinarySearchTree<T>
 	//
 	//	access
 	//
+	BinarySearchNode<T> getNodes();
 	BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value);
 	BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value, Comparator<T> comparator);
 	//
