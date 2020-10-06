@@ -3,9 +3,8 @@
  */
 package com.markcrowe.datastructures;
 
-import com.markcrowe.datastructures.BinarySearchNode;
-import com.markcrowe.datastructures.BinarySearchTree;
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  *
@@ -23,12 +22,12 @@ public class BinarySearchTreeClass<T, TComparator extends Comparator<T>> impleme
 	//	modifiers
 	//
 	@Override
-	public void Clear()
+	public void clear()
 	{
 		this.root = null;
 	}
 	@Override
-	public synchronized void Insert(T value)
+	public synchronized void insert(T value)
 	{
 		if(this.root == null)
 		{
@@ -36,147 +35,75 @@ public class BinarySearchTreeClass<T, TComparator extends Comparator<T>> impleme
 		}
 		else
 		{
-			this.root.AttachValueOnNode(value);
+			this.root.attachValueOnNode(value);
 		}
 	}
 	//
 	//	access
 	//
-
 	@Override
-	public BinarySearchNode SearchForTree(BinarySearchNode<T> root, T value)
+	public BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value)
 	{
-		return this.SearchForTree(root, value, comparator);
+		return this.searchForTree(root, value, comparator);
 	}
 	@Override
-	public BinarySearchNode SearchForTree(BinarySearchNode<T> root, T value, Comparator<T> comparator)
+	public BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value, Comparator<T> comparator)
 	{
 		BinarySearchNode<T> candidate;
 		candidate = root;
-		while((candidate != null) && (value != candidate.Value()))
+		while((candidate != null) && (value != candidate.getValue()))
 		{
-			if(this.comparator.compare(value, candidate.Value()) == -1)
+			if(this.comparator.compare(value, candidate.getValue()) == -1)
 			{
-				candidate = candidate.NextLesserValueNode();
+				candidate = candidate.getNextLesserValueNode();
 			}
 			else
 			{
-				candidate = candidate.NextGreaterValueNode();
+				candidate = candidate.getNextGreaterValueNode();
 			}
 		}
 		return candidate;
 	}
 	//
-	//	Public Methods - Traverse BinarySearchTree
+	//	Iterators
 	//
 	@Override
-	public synchronized String TraverseInOrder()
+	public Iterator<T> getInOrderIterator()
 	{
-		return this.TraverseInOrderSupport(this.root);
+		return new BinarySearchTreeInorderIterator<T>(this.root);
 	}
 	@Override
-	public synchronized String TraversePreOrder()
+	public Iterator<T> getPreOrderIterator()
 	{
-		return this.TraversePreOrderSupport(this.root);
+		return new BinarySearchTreePreorderIterator<T>(this.root);
 	}
 	@Override
-	public synchronized String TraversePostOrder()
+	public Iterator<T> getPostOrderIterator()
 	{
-		return this.TraversePostOrderSupport(this.root);
-	}
-	//
-	//	Private Methods - Traverse BinarySearchTree Recursive
-	//
-	private String TraverseInOrderSupport(BinarySearchNode<T> node)
-	{
-		if(node == null)
-		{
-			return "";
-		}
-		String lowerValue = this.TraverseInOrderSupport(node.NextLesserValueNode());
-		String operand = this.PrintNode(node);
-		String higherValue = this.TraverseInOrderSupport(node.NextGreaterValueNode());
-
-		return this.PrintOrder(lowerValue, operand, higherValue);
-	}
-	private String TraversePreOrderSupport(BinarySearchNode<T> node)
-	{
-		if(node == null)
-		{
-			return "";
-		}
-		String operand = this.PrintNode(node);
-		String lowerValue = this.TraversePreOrderSupport(node.NextLesserValueNode());
-		String higherValue = this.TraversePreOrderSupport(node.NextGreaterValueNode());
-
-		return this.PrintOrder(operand, lowerValue, higherValue);
-	}
-	private String TraversePostOrderSupport(BinarySearchNode<T> node)
-	{
-		if(node == null)
-		{
-			return "";
-		}
-		String lowerValue = this.TraversePostOrderSupport(node.NextLesserValueNode());
-		String higherValue = this.TraversePostOrderSupport(node.NextGreaterValueNode());
-		String operand = this.PrintNode(node);
-
-		return this.PrintOrder(lowerValue, higherValue, operand);
-	}
-	//
-	//	Private Methods - Traverse BinarySearchTree Support
-	//
-	public String PrintNode(BinarySearchNode<T> node)
-	{
-		return node.Value() + " : " + this.PrintNodeDetails(node);
-	}
-	private String PrintNodeDetails(BinarySearchNode<T> node)
-	{
-
-		if(node.IsLeaf())
-		{
-			return " LeafNode";
-		}
-		String leftString = PrintNodeDetailLeft(node.NextLesserValueNode());
-		String rightString = PrintNodeDetailRight(node.NextGreaterValueNode());
-
-		if(leftString.isEmpty())
-		{
-			return rightString;
-		}
-		else
-		{
-			return leftString + "\t" + rightString;
-		}
-	}
-	private String PrintNodeDetailLeft(BinarySearchNode<T> node)
-	{
-		if(node == null)
-		{
-			return "";
-		}
-		String detail = "Left SubTree : " + node.Value();
-		return detail;
-	}
-	private String PrintNodeDetailRight(BinarySearchNode<T> node)
-	{
-		if(node == null)
-		{
-			return "";
-		}
-		String detail = "Right SubTree : " + node.Value();
-		return detail;
-	}
-	public String PrintOrder(String value1, String value2, String value3)
-	{
-		return value1
-				+ System.lineSeparator() + value2
-				+ System.lineSeparator() + value3
-				+ "";
+		return new BinarySearchTreePostorderIterator<T>(this.root);
 	}
 	//
 	//	Private Fields
 	//
 	private final TComparator comparator;
-	private BinarySearchNode root;
+	private BinarySearchNode<T> root;
+
+	public BinarySearchNode<T> getNodes()
+	{
+		BinarySearchNode<T> copy = copyNodes(this.root, comparator);
+		return copy;
+	}
+	public static <T, TComparator extends Comparator<T>> BinarySearchNode<T> copyNodes(BinarySearchNode<T> originalNode, TComparator comparator)
+	{
+		if(originalNode == null)
+		{
+			return null;
+		}
+		var nodeCopy = new BinarySearchNodeClass<>(originalNode.getValue(), comparator);
+		var left = copyNodes(originalNode.getNextLesserValueNode(), comparator);
+		var right = copyNodes(originalNode.getNextGreaterValueNode(), comparator);
+		nodeCopy.setNextLesserValueNode(left != null ? copyNodes(left, comparator) : null);
+		nodeCopy.setNextGreaterValueNode(right != null ? copyNodes(right, comparator) : null);
+		return nodeCopy;
+	}
 }
