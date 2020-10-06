@@ -11,20 +11,19 @@ public interface BinarySearchNode<T>
 	//
 	//	accessors
 	//
-
 	/**
 	 *
 	 * @return
 	 */
-	T Value();
-	BinarySearchNode<T> NextGreaterValueNode();
-	BinarySearchNode<T> NextLesserValueNode();
+	BinarySearchNode<T> getNextGreaterValueNode();
+	BinarySearchNode<T> getNextLesserValueNode();
+	T getValue();
 	//
 	//	modifiers
 	//
-	void AttachValueOnNode(T value);
+	void attachValueOnNode(T value);
 	//
 	//	Methods
 	//
-	boolean IsLeaf();
+	boolean isLeaf();
 }

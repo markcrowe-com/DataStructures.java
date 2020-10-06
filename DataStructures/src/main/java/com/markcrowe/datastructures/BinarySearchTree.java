@@ -15,17 +15,17 @@ public interface BinarySearchTree<T>
 	//
 	//	modifiers
 	//
-	void Clear();
-	void Insert(T d);
+	void clear();
+	void insert(T value);
 	//
 	//	access
 	//
-	BinarySearchNode SearchForTree(BinarySearchNode<T> root, T value);
-	BinarySearchNode SearchForTree(BinarySearchNode<T> root, T value, Comparator<T> comparator);
+	BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value);
+	BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value, Comparator<T> comparator);
 	//
 	//	Traverse BinarySearchTree
 	//
-	String TraverseInOrder();
-	String TraversePreOrder();
-	String TraversePostOrder();
+	String traverseInOrder();
+	String traversePreOrder();
+	String traversePostOrder();
 }
