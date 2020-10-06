@@ -3,9 +3,12 @@
  */
 package com.markcrowe.datastructures.windows;
 
+import com.markcrowe.datastructures.support.BTreePrinter;
 import com.markcrowe.datastructures.support.IntegerBinarySearchTreeClass;
+import com.markcrowe.datastructures.support.TreeInorderPrinter;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultCaret;
 
@@ -28,42 +31,57 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
 
 	private void PrepopulateTreeWithSimpleValues()
 	{
-		this.tree.Clear();
-		this.tree.Insert(2);
-		this.tree.Insert(1);
-		this.tree.Insert(3);
+		this.tree.clear();
+		this.tree.insert(2);
+		this.tree.insert(1);
+		this.tree.insert(3);
 
 	}
 	private void PrepopulateTreeWithDesValues()
 	{
-		this.tree.Clear();
-		this.tree.Insert(20);
-		this.tree.Insert(1);
-		this.tree.Insert(60);
-		this.tree.Insert(12);
-		this.tree.Insert(4);
-		this.tree.Insert(11);
-		this.tree.Insert(33);
+		this.tree.clear();
+		this.tree.insert(20);
+		this.tree.insert(1);
+		this.tree.insert(60);
+		this.tree.insert(12);
+		this.tree.insert(4);
+		this.tree.insert(11);
+		this.tree.insert(33);
 	}
 
 	private void PrintTreeInOrder()
 	{
-		this.PrintConsole(this.tree.TraverseInOrder());
-		JOptionPane.showConfirmDialog(this, this.tree.TraverseInOrder());
+		var text = "Inorder: " + TreeIteratorToString(tree.getInOrderIterator());
+		this.PrintConsole(text);
+		//JOptionPane.showConfirmDialog(this, this.tree.traverseInOrder());
 	}
+	public String TreeIteratorToString(Iterator<Integer> iterator)
+	{
+		String text = iterator.hasNext() ? iterator.next() + "" : "";
+		for(; iterator.hasNext();)
+		{
+			text += ", " + iterator.next();
+		}
+		return text;
+	}
+
 	private void PrintTreePreOrder()
 	{
-		this.PrintConsole(this.tree.TraversePreOrder());
+		var text = "Preorder: " + TreeIteratorToString(tree.getPreOrderIterator());
+		this.PrintConsole(text);
+		TreeInorderPrinter<Integer> printer = new TreeInorderPrinter<>(tree);
+		this.graphicConsoleJTextArea.setText(printer.printString());
 	}
 	private void PrintTreePostOrder()
 	{
-		this.PrintConsole(this.tree.TraversePostOrder());
+		var text = "Postorder: " + TreeIteratorToString(tree.getPostOrderIterator());
+		this.PrintConsole(text);
 	}
 	int i = 99;
 
 	public void Randomnumbertotree()
 	{
-		this.tree.Insert(++i);
+		this.tree.insert(++i);
 		this.PrintConsole("inserted into Tree" + i);
 	}
 
@@ -73,7 +91,7 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
 		try
 		{
 			int value = Integer.parseInt(input);
-			this.tree.Insert(value);
+			this.tree.insert(value);
 			this.PrintConsole("inserted into Tree" + value);
 		}
 		catch(Exception exception)
@@ -84,19 +102,20 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
 	}
 	private void EmptyTree()
 	{
-		this.tree.Clear();
+		this.tree.clear();
 		this.PrintConsole("Emptied Tree");
 	}
 	private void ClearDisplayConsole()
 	{
 		this.displayConsoleJTextArea.setText("");
+		this.graphicConsoleJTextArea.setText("");
 	}
 
 	public void PrintConsole(String text)
 	{
 		this.displayConsoleJTextArea.insert(text + System.lineSeparator(), 0);
+		this.graphicConsoleJTextArea.setText(BTreePrinter.printNode(tree.getNodes()));
 	}
-
 	public final void CenterTheFrame()
 	{
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -121,6 +140,8 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
         inOrderPrintButton = new javax.swing.JButton();
         fillSimpleValuesButton = new javax.swing.JButton();
         fillDesValuesButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        graphicConsoleJTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,6 +244,14 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
             }
         });
 
+        graphicConsoleJTextArea.setEditable(false);
+        graphicConsoleJTextArea.setBackground(new java.awt.Color(0, 0, 0));
+        graphicConsoleJTextArea.setColumns(20);
+        graphicConsoleJTextArea.setFont(new java.awt.Font("Courier", 1, 12)); // NOI18N
+        graphicConsoleJTextArea.setForeground(new java.awt.Color(255, 255, 255));
+        graphicConsoleJTextArea.setRows(5);
+        jScrollPane1.setViewportView(graphicConsoleJTextArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,7 +259,6 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(fillDesValuesButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -248,7 +276,11 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(InsertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -270,8 +302,13 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
                     .addComponent(InsertRandomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InsertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ClearButton, InsertButton, InsertRandomButton});
@@ -329,8 +366,10 @@ public class BinarySearchTreeAssignmentJFrame extends javax.swing.JFrame
     private javax.swing.JTextArea displayConsoleJTextArea;
     private javax.swing.JButton fillDesValuesButton;
     private javax.swing.JButton fillSimpleValuesButton;
+    private javax.swing.JTextArea graphicConsoleJTextArea;
     private javax.swing.JButton inOrderPrintButton;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton postOrderPrintButton;
     private javax.swing.JButton preOrderPrintButton;
     // End of variables declaration//GEN-END:variables
