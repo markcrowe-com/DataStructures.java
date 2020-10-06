@@ -4,7 +4,7 @@
 package com.markcrowe.datastructures.windows;
 
 import com.markcrowe.datastructures.support.Employee;
-import com.markcrowe.datastructures.support.EmployeeQueueClass;
+import com.markcrowe.datastructures.support.EmployeeLinkedQueue;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Iterator;
@@ -22,7 +22,7 @@ public final class QueueAssignmentJFrame extends javax.swing.JFrame
 		//
 		//	queue
 		//
-		this.queue = new EmployeeQueueClass();
+		this.queue = new EmployeeLinkedQueue();
 		//
 		//	Prepopulation
 		//
@@ -165,7 +165,7 @@ public final class QueueAssignmentJFrame extends javax.swing.JFrame
 	//
 	//	fields
 	//
-	final public EmployeeQueueClass queue;
+	final public EmployeeLinkedQueue queue;
 	final private QueueAssignmentInputJFrame employee;
 
 	@SuppressWarnings("unchecked")

@@ -16,13 +16,13 @@ public final class FlightSearchJFrame extends javax.swing.JFrame
 	public FlightSearchJFrame(WeightedGraphAssignmentJFrame parent)
 	{
 		this.initComponents();
-		this.CenterTheFrame();
+		this.centerTheFrame();
 		this.theblackmainframe = parent;
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.InitializeValues();
 
 	}
-	public void InitializeValues()
+	private void InitializeValues()
 	{
 		for(Airport item : this.theblackmainframe.airportList)
 		{
@@ -30,7 +30,7 @@ public final class FlightSearchJFrame extends javax.swing.JFrame
 			this.EndPositionComboBox.addItem(item.Name());
 		}
 	}
-	private void CenterTheFrame()
+	private void centerTheFrame()
 	{
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);

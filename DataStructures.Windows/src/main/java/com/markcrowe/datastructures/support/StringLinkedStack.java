@@ -3,11 +3,11 @@
  */
 package com.markcrowe.datastructures.support;
 
-import com.markcrowe.datastructures.QueueClass;
+import com.markcrowe.datastructures.LinkedStack;
 
 /**
- *
+ * Stack for String Type
  */
-public final class EmployeeQueueClass extends QueueClass<Employee>
+public final class StringLinkedStack extends LinkedStack<String>
 {
 }

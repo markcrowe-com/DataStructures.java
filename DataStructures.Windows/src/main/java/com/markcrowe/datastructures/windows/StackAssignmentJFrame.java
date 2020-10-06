@@ -3,30 +3,24 @@
  */
 package com.markcrowe.datastructures.windows;
 
-import com.markcrowe.datastructures.support.StringStackClass;
+import com.markcrowe.datastructures.support.StringLinkedStack;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-/**
- *
- */
 public final class StackAssignmentJFrame extends javax.swing.JFrame
 {
 	public StackAssignmentJFrame()
 	{
 //		java.util.Stack<String> mystatck = null;
 //		mystatck.pop();
-//
-//		com.markcrowe.datastructures.Stack<String> mystatck1 = null;
-//		mystatck1.Pop();
 
 		this.initComponents();
 		//
 		//	stack
 		//
-		this.stack = new StringStackClass();
+		this.stack = new StringLinkedStack();
 		//
 		//	Prepopulation
 		//
@@ -38,10 +32,10 @@ public final class StackAssignmentJFrame extends javax.swing.JFrame
 	}
 	private void PrepopulateStack()
 	{
-		stack.Push("6");
-		stack.Push("3");
-		stack.Push("2");
-		stack.Push("1");
+		stack.push("6");
+		stack.push("3");
+		stack.push("2");
+		stack.push("1");
 	}
 	public void CenterTheFrame()
 	{
@@ -59,12 +53,12 @@ public final class StackAssignmentJFrame extends javax.swing.JFrame
 	}
 	private void PrintSize()
 	{
-		int size = this.stack.Size();
+		int size = this.stack.size();
 		this.PrintConsole("The size of the Stack is: " + size);
 	}
 	private void IsStackEmpty()
 	{
-		if(stack.IsEmpty())
+		if(stack.isEmpty())
 		{
 			this.PrintConsole("Nothing in Stack");
 		}
@@ -75,43 +69,43 @@ public final class StackAssignmentJFrame extends javax.swing.JFrame
 	}
 	private void PopStack()
 	{
-		if(stack.IsEmpty())
+		if(stack.isEmpty())
 		{
 			this.PrintConsole("Nothing in Stack Cannot Pop");
 		}
 		else
 		{
-			String element = this.stack.Pop();
+			String element = this.stack.pop();
 			this.PrintConsole("Popped Stack Result = " + element);
 		}
 	}
 	private void PushStack()
 	{
 		String element = JOptionPane.showInputDialog("Enter Node Details");
-		this.stack.Push(element);
+		this.stack.push(element);
 		this.PrintConsole("Pushed Stack Result = " + element);
 	}
 	private void ClearStack()
 	{
-		if(stack.IsEmpty())
+		if(stack.isEmpty())
 		{
 			this.PrintConsole("Nothing in Stack Clear Unsuccessful");
 		}
 		else
 		{
-			this.stack.Clear();
+			this.stack.clear();
 			this.PrintConsole("Stack has been cleared");
 		}
 	}
 	private void PeekStack()
 	{
-		if(stack.IsEmpty())
+		if(stack.isEmpty())
 		{
 			this.PrintConsole("Nothing in Stack Cannot Check");
 		}
 		else
 		{
-			String element = this.stack.Peek();
+			String element = this.stack.peek();
 			this.PrintConsole("Element at the top = " + element);
 		}
 	}
@@ -157,7 +151,7 @@ public final class StackAssignmentJFrame extends javax.swing.JFrame
 	//
 	//	Private Fields
 	//
-	private final StringStackClass stack;
+	private final StringLinkedStack stack;
 
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
