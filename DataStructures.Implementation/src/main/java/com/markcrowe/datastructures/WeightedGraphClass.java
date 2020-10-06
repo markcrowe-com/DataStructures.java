@@ -124,7 +124,7 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 	@Override
 	public Queue<TVertex> EdgeConnectedVertices(TVertex vertex)
 	{
-		Queue<TVertex> connectedVertices = new QueueClass<>();
+		Queue<TVertex> connectedVertices = new LinkedQueue<>();
 		int startVertexIndex = this.IndexOf(vertex);
 		for(int endVertexIndex = 0; endVertexIndex < this.numberOfVertices; endVertexIndex++)
 		{

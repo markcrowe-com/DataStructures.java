@@ -3,9 +3,9 @@
  */
 package com.markcrowe.algorithms;
 
+import com.markcrowe.datastructures.LinkedQueue;
 import com.markcrowe.datastructures.Queue;
 import com.markcrowe.datastructures.WeightedGraph;
-import com.markcrowe.datastructures.QueueClass;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ public class BreadthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
 	@Override
 	public boolean Search(WeightedGraph<TVertex> graph, TVertex startVertex, TVertex endVertex, List<TVertex> path)
 	{
-		Queue<TVertex> queue = new QueueClass<>();
+		Queue<TVertex> queue = new LinkedQueue<>();
 		Queue<TVertex> vertexQueue;
 		boolean found = false;
 		TVertex vertex;

@@ -3,16 +3,16 @@
  */
 package com.markcrowe.datastructures;
 
-import com.markcrowe.datastructures.Queue;
 import java.util.Iterator;
 
 /**
+ * Linked implementation of Queue
  *
  * @param <T>
  */
-public class QueueClass<T> implements Queue<T>
+public class LinkedQueue<T> implements Queue<T>
 {
-	public QueueClass()
+	public LinkedQueue()
 	{
 		this.Initialize();
 	}
@@ -34,18 +34,18 @@ public class QueueClass<T> implements Queue<T>
 	@Override
 	public T PeekAtFirstItem()
 	{
-		return this.firstLinkInChain.Item();
+		return this.firstLinkInChain.getValue();
 	}
 	@Override
 	public T PeekAtLastItem()
 	{
-		return this.lastLinkInChain.Item();
+		return this.lastLinkInChain.getValue();
 	}
 	@Override
 	public String toString()
 	{
 		String output = "";
-		for(ChainLinkClass<T> i = this.firstLinkInChain; i != null; i = i.NextNodeInList())
+		for(ChainLinkClass<T> i = this.firstLinkInChain; i != null; i = i.getNextNodeInList())
 		{
 			output += i.toString() + System.lineSeparator();
 		}
@@ -64,7 +64,7 @@ public class QueueClass<T> implements Queue<T>
 	public T Dequeue()
 	{
 		ChainLinkClass<T> chainLink = this.ReturnAndRemoveFirstLinkInChain();
-		T firstItem = chainLink.Item();
+		T firstItem = chainLink.getValue();
 		//	Delete chainLink
 		return firstItem;
 	}
@@ -89,7 +89,7 @@ public class QueueClass<T> implements Queue<T>
 //		while(this.firstLinkInChain != null)
 //		{
 //			current = this.firstLinkInChain;
-//			this.firstLinkInChain = this.firstLinkInChain.NextNodeInList();
+//			this.firstLinkInChain = this.firstLinkInChain.getNextNodeInList();
 //			//delete current;
 //		}
 	}
@@ -113,7 +113,7 @@ public class QueueClass<T> implements Queue<T>
 	}
 	private void AddToLastLinkInChain(ChainLinkClass<T> chainLink)
 	{
-		this.lastLinkInChain.NextNodeInList(chainLink);
+		this.lastLinkInChain.setNextNodeInList(chainLink);
 	}
 	private void FirstLinkInChain(ChainLinkClass<T> chainLink)
 	{
@@ -123,7 +123,7 @@ public class QueueClass<T> implements Queue<T>
 		}
 		else
 		{
-			this.lastLinkInChain.NextNodeInList(chainLink);
+			this.lastLinkInChain.setNextNodeInList(chainLink);
 		}
 		this.lastLinkInChain = chainLink;
 
@@ -138,7 +138,7 @@ public class QueueClass<T> implements Queue<T>
 	}
 	protected void RemoveFirstLinkInChain()
 	{
-		this.firstLinkInChain = firstLinkInChain.NextNodeInList();
+		this.firstLinkInChain = firstLinkInChain.getNextNodeInList();
 		this.size--;
 		if(this.size == 0)
 		{
