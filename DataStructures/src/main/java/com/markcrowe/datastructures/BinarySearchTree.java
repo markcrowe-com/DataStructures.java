@@ -4,6 +4,7 @@
 package com.markcrowe.datastructures;
 
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * Binary Search Tree
@@ -23,9 +24,9 @@ public interface BinarySearchTree<T>
 	BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value);
 	BinarySearchNode<T> searchForTree(BinarySearchNode<T> root, T value, Comparator<T> comparator);
 	//
-	//	Traverse BinarySearchTree
+	//	Iterators
 	//
-	String traverseInOrder();
-	String traversePreOrder();
-	String traversePostOrder();
+	Iterator<T> getInOrderIterator();
+	Iterator<T> getPreOrderIterator();
+	Iterator<T> getPostOrderIterator();
 }
