@@ -25,7 +25,6 @@
 				<version>3.8.1</version>
 				<configuration>
 					<compilerArgs>
-						<arg>-verbose</arg>
 						<arg>-Xlint:unchecked</arg>
 					</compilerArgs>
 				</configuration>
