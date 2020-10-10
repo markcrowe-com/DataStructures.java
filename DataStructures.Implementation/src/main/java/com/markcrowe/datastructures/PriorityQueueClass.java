@@ -3,7 +3,6 @@
  */
 package com.markcrowe.datastructures;
 
-import com.markcrowe.datastructures.PriorityQueue;
 import java.util.Comparator;
 
 /**
@@ -41,6 +40,7 @@ public class PriorityQueueClass<T, TComparator extends Comparator<T>> implements
 	@Override
 	public T Dequeue()
 	{
+		@SuppressWarnings("unchecked")
 		T item = (T) this.itemsHeap.Items()[0];	// remove root element
 		this.itemsHeap.Items()[0] = this.itemsHeap.Items()[this.itemsCount - 1];
 		this.itemsCount--;

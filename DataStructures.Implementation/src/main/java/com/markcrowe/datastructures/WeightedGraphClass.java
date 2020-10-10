@@ -224,6 +224,7 @@ public class WeightedGraphClass<TVertex> implements WeightedGraph<TVertex>
 	{
 		return EdgeValueIsNull(this.GetEdgeWeight(startVertexIndex, endVertexIndex));
 	}
+	@SuppressWarnings("unchecked")
 	protected TVertex GetVertex(int vertexIndex)
 	{
 		return (TVertex) this.vertexList[vertexIndex];
