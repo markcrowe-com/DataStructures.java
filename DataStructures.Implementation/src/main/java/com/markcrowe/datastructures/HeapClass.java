@@ -39,38 +39,6 @@ public class HeapClass<T, TComparator extends Comparator<T>> implements Heap
 	//
 	//	Methods
 	//
-	public void ReheapDown_wrong(int rootIndex, int bottomIndex)
-	{
-		int maxChildIndex;
-		int rightChildIndex;
-		int leftChildIndex;
-		leftChildIndex = rootIndex * 2 + 1;
-		rightChildIndex = rootIndex * 2 + 2;
-		if(leftChildIndex <= bottomIndex)
-		{
-			if(leftChildIndex == bottomIndex)
-			{
-				maxChildIndex = leftChildIndex;
-			}
-			else
-			{
-				if(true)//items[leftChildIndex] <= items[rightChildIndex])
-				{
-					maxChildIndex = rightChildIndex;
-				}
-				else
-				{
-					maxChildIndex = leftChildIndex;
-				}
-			}
-			if(true)//items[rootIndex] < items[maxChildIndex])
-			{
-				this.SwapArrayElements(items, rootIndex, maxChildIndex);
-				this.ReheapDown_wrong(maxChildIndex, bottomIndex);
-			}
-		}
-	}// end of ReheapDown
-
 	@Override
 	public void ReheapDown(int rootIndex, int bottomIndex)
 	{
@@ -86,7 +54,9 @@ public class HeapClass<T, TComparator extends Comparator<T>> implements Heap
 			}
 			else
 			{
+				@SuppressWarnings("unchecked")
 				T leftChildItem = (T) items[leftChildIndex];
+				@SuppressWarnings("unchecked")
 				T rightChildItem = (T) items[rightChildIndex];
 				int compareResult = this.comparator.compare(leftChildItem, rightChildItem);
 				if(CompareResult.IsLessThanOrEqual(compareResult))
@@ -98,7 +68,9 @@ public class HeapClass<T, TComparator extends Comparator<T>> implements Heap
 					maxChildIndex = leftChildIndex;
 				}
 			}
+			@SuppressWarnings("unchecked")
 			T rootItem = (T) items[rootIndex];
+			@SuppressWarnings("unchecked")
 			T maxChildItem = (T) items[maxChildIndex];
 			int compareResult = this.comparator.compare(rootItem, maxChildItem);
 			if(CompareResult.IsLessThan(compareResult))
@@ -116,7 +88,9 @@ public class HeapClass<T, TComparator extends Comparator<T>> implements Heap
 		if(bottomIndex > rootIndex)
 		{
 			parentIndex = (bottomIndex - 1) / 2;
+			@SuppressWarnings("unchecked")
 			T parentItem = (T) items[parentIndex];
+			@SuppressWarnings("unchecked")
 			T bottomItem = (T) items[bottomIndex];
 			int compareResult = this.comparator.compare(parentItem, bottomItem);
 			if(CompareResult.IsLessThan(compareResult))
@@ -129,7 +103,7 @@ public class HeapClass<T, TComparator extends Comparator<T>> implements Heap
 	//
 	//	Methods Support
 	//
-	private void SwapArrayElements(Object[] array, int lhsIndex, int rhsIndex)
+	public static void SwapArrayElements(Object[] array, int lhsIndex, int rhsIndex)
 	{
 		Object lhsCopy = array[lhsIndex];
 		array[lhsIndex] = array[rhsIndex];
