@@ -10,23 +10,20 @@ import java.util.List;
 
 /**
  *
- * @param <TVertex>
+ * @param <T>
  */
-public class BreadthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
+public class BreadthFirstSearch<T> implements WeightedGraphSearch<T>
 {
 	@Override
-	public boolean Search(WeightedGraph<TVertex> graph, TVertex startVertex, TVertex endVertex, List<TVertex> path)
+	public boolean Search(WeightedGraph<T> graph, T startVertex, T endVertex, List<T> path)
 	{
-		Queue<TVertex> queue = new LinkedQueue<>();
-		Queue<TVertex> vertexQueue;
 		boolean found = false;
-		TVertex vertex;
-		TVertex item;
 		graph.ClearMarks();
+		Queue<T> queue = new LinkedQueue<>();
 		queue.QueueItem(startVertex);
 		do
 		{
-			vertex = queue.Dequeue();
+			T vertex = queue.Dequeue();
 			if(vertex == endVertex)
 			{
 				found = true;
@@ -36,11 +33,11 @@ public class BreadthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
 				if(!graph.IsMarked(vertex))
 				{
 					graph.MarkVertex(vertex);
-					vertexQueue = graph.EdgeConnectedVertices(vertex);
+					Queue<T> vertexQueue = graph.EdgeConnectedVertices(vertex);
 
 					while(!vertexQueue.IsEmpty())
 					{
-						item = vertexQueue.Dequeue();
+						T item = vertexQueue.Dequeue();
 						if(!graph.IsMarked(item))
 						{
 							queue.QueueItem(item);
