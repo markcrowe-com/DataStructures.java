@@ -64,8 +64,8 @@ public final class FlightSearchJFrame extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        StartPositionComboBox = new javax.swing.JComboBox();
-        EndPositionComboBox = new javax.swing.JComboBox();
+        StartPositionComboBox = new javax.swing.JComboBox<>();
+        EndPositionComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter()
@@ -186,8 +186,8 @@ public final class FlightSearchJFrame extends javax.swing.JFrame
     }//GEN-LAST:event_StartPositionComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox EndPositionComboBox;
-    private javax.swing.JComboBox StartPositionComboBox;
+    private javax.swing.JComboBox<String> EndPositionComboBox;
+    private javax.swing.JComboBox<String> StartPositionComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton saveButton;

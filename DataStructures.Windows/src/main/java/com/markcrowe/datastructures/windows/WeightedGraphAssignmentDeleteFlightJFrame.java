@@ -61,8 +61,8 @@ public final class WeightedGraphAssignmentDeleteFlightJFrame extends javax.swing
         jLabel1 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        startPositionComboBox = new javax.swing.JComboBox();
-        endPositionComboBox = new javax.swing.JComboBox();
+        startPositionComboBox = new javax.swing.JComboBox<>();
+        endPositionComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter()
@@ -175,10 +175,10 @@ public final class WeightedGraphAssignmentDeleteFlightJFrame extends javax.swing
     }//GEN-LAST:event_startPositionComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox endPositionComboBox;
+    private javax.swing.JComboBox<String> endPositionComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton saveButton;
-    private javax.swing.JComboBox startPositionComboBox;
+    private javax.swing.JComboBox<String> startPositionComboBox;
     // End of variables declaration//GEN-END:variables
 }

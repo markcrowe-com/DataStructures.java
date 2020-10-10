@@ -72,8 +72,8 @@ public final class WeightedGraphAssignmentAddFlightJFrame extends javax.swing.JF
         saveButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        StartPositionComboBox = new javax.swing.JComboBox();
-        EndPositionComboBox = new javax.swing.JComboBox();
+        StartPositionComboBox = new javax.swing.JComboBox<>();
+        EndPositionComboBox = new javax.swing.JComboBox<>();
         DistanceTextBox = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,8 +224,8 @@ public final class WeightedGraphAssignmentAddFlightJFrame extends javax.swing.JF
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DistanceTextBox;
-    private javax.swing.JComboBox EndPositionComboBox;
-    private javax.swing.JComboBox StartPositionComboBox;
+    private javax.swing.JComboBox<String> EndPositionComboBox;
+    private javax.swing.JComboBox<String> StartPositionComboBox;
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
