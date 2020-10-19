@@ -3,6 +3,7 @@
  */
 package com.markcrowe.datastructures;
 
+import com.markcrowe.algorithms.ChainLinkMethods;
 import java.util.Iterator;
 
 /**
@@ -20,12 +21,12 @@ public class LinkedQueue<T> implements Queue<T>
 	//	Public Methods - Status
 	//
 	@Override
-	public int Size()
+	public int size()
 	{
 		return this.size;
 	}
 	@Override
-	public Boolean IsEmpty()
+	public Boolean isEmpty()
 	{
 		//return this.firstLinkInChain == null;
 		return this.lastLinkInChain == null;
@@ -44,18 +45,13 @@ public class LinkedQueue<T> implements Queue<T>
 	@Override
 	public String toString()
 	{
-		String output = "";
-		for(ChainLinkClass<T> i = this.firstLinkInChain; i != null; i = i.getNextNodeInList())
-		{
-			output += i.toString() + System.lineSeparator();
-		}
-		return output;
+		return ChainLinkMethods.toListString(this.firstLinkInChain);
 	}
 	//
 	//	Public Methods
 	//
 	@Override
-	public void Clear()
+	public void clear()
 	{
 		//this.ClearItems();
 		this.Initialize();
@@ -80,6 +76,19 @@ public class LinkedQueue<T> implements Queue<T>
 		//
 		this.JoinQueue(chainLink);
 	}
+
+	/**
+	 *
+	 * @param items
+	 */
+	public void QueueItems(T... items)
+	{
+		for(T item : items)
+		{
+			QueueItem(item);
+		}
+	}
+
 	//
 	//	Protected Methods
 	//
@@ -95,7 +104,7 @@ public class LinkedQueue<T> implements Queue<T>
 	}
 	private void JoinQueue(ChainLinkClass<T> chainLink)
 	{
-		if(this.IsEmpty())
+		if(this.isEmpty())
 		{
 			this.PlaceFirstInChain(chainLink);
 		}
@@ -117,7 +126,7 @@ public class LinkedQueue<T> implements Queue<T>
 	}
 	private void FirstLinkInChain(ChainLinkClass<T> chainLink)
 	{
-		if(this.IsEmpty())
+		if(this.isEmpty())
 		{
 			this.firstLinkInChain = chainLink;
 		}
