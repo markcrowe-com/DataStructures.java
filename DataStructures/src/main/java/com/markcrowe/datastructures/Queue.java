@@ -14,16 +14,21 @@ public interface Queue<T> extends Iterable<T>
 	//
 	//	Public Methods
 	//
-	void Clear();
+	void clear();
 	T Dequeue();
-	Boolean IsEmpty();
+	/**
+	 *
+	 * @return
+	 */
+	Boolean isEmpty();
 	T PeekAtFirstItem();
 	T PeekAtLastItem();
 	void QueueItem(T item);
+	void QueueItems(T... items);
 	//
 	//	Public Methods - Status
 	//
-	int Size();
+	int size();
 	@Override
 	Iterator<T> iterator();
 	@Override
