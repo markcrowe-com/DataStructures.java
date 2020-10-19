@@ -3,6 +3,7 @@
  */
 package com.markcrowe.datastructures;
 
+import com.markcrowe.algorithms.BinarySearchNodeMethods;
 import java.util.Iterator;
 
 public class BinarySearchTreePreorderIterator<T> implements Iterator<T>
