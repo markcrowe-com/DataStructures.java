@@ -7,7 +7,7 @@ package com.markcrowe.datastructures;
  *
  * @param <T>
  */
-class ChainLinkClass<T>
+public class ChainLinkClass<T>
 {
 	public ChainLinkClass(T value, ChainLinkClass<T> nextLinkInChain)
 	{
