@@ -24,6 +24,12 @@ public interface Queue<T> extends Iterable<T>
 	T PeekAtFirstItem();
 	T PeekAtLastItem();
 	void QueueItem(T item);
+
+	/**
+	 *
+	 * @param items
+	 */
+	@SuppressWarnings("unchecked")
 	void QueueItems(T... items);
 	//
 	//	Public Methods - Status
