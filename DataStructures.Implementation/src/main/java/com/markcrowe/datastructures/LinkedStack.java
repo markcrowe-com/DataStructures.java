@@ -3,6 +3,7 @@
  */
 package com.markcrowe.datastructures;
 
+import com.markcrowe.algorithms.ChainLinkMethods;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
@@ -45,7 +46,11 @@ public class LinkedStack<T> implements Stack<T>
 	{
 		return this.size;
 	}
-	//
+	@Override
+	public String toString()
+	{
+		return ChainLinkMethods.toListString(this.firstLinkInChain);
+	}	//
 	//	Public Methods
 	//
 	@Override
