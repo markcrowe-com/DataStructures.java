@@ -50,13 +50,13 @@ public final class QueueAssignmentJFrame extends javax.swing.JFrame
 		if(this.HandleQueueIsEmpty());
 		else
 		{
-			this.queue.Clear();
+			this.queue.clear();
 			this.PrintConsole("The Queue has been cleared.");
 		}
 	}
 	private void PrintSize()
 	{
-		int size = this.queue.Size();
+		int size = this.queue.size();
 		this.PrintConsole("The size of the queue is: " + size);
 	}
 	private void PrintQueue()
@@ -72,7 +72,7 @@ public final class QueueAssignmentJFrame extends javax.swing.JFrame
 				Result += "Top  of queue: " + iterator.next().toString();
 			}
 
-			int size = this.queue.Size() - 1;
+			int size = this.queue.size() - 1;
 			for(int index = 1; index < size; index++)
 			{
 				Result += System.lineSeparator() + "Next in queue: " + iterator.next().toString();
@@ -150,7 +150,7 @@ public final class QueueAssignmentJFrame extends javax.swing.JFrame
 	}
 	public boolean HandleQueueIsEmpty()
 	{
-		boolean isEmpty = queue.IsEmpty();
+		boolean isEmpty = queue.isEmpty();
 		if(isEmpty)
 		{
 			this.PrintConsole("The Queue is Empty.");
