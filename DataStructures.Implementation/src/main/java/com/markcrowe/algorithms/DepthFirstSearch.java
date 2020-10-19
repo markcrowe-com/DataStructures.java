@@ -44,7 +44,7 @@ public class DepthFirstSearch<TVertex> implements WeightedGraphSearch<TVertex>
 					graph.MarkVertex(candiateVertex);
 					vertexQueue = graph.EdgeConnectedVertices(candiateVertex);
 					TVertex item;
-					while(!vertexQueue.IsEmpty())
+					while(!vertexQueue.isEmpty())
 					{
 						item = vertexQueue.Dequeue();
 						if(!graph.IsMarked(item))

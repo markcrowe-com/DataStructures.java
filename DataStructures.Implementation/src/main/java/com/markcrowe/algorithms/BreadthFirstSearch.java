@@ -35,7 +35,7 @@ public class BreadthFirstSearch<T> implements WeightedGraphSearch<T>
 					graph.MarkVertex(vertex);
 					Queue<T> vertexQueue = graph.EdgeConnectedVertices(vertex);
 
-					while(!vertexQueue.IsEmpty())
+					while(!vertexQueue.isEmpty())
 					{
 						T item = vertexQueue.Dequeue();
 						if(!graph.IsMarked(item))
@@ -46,7 +46,7 @@ public class BreadthFirstSearch<T> implements WeightedGraphSearch<T>
 				}
 			}
 		}
-		while(!queue.IsEmpty() && !found);
+		while(!queue.isEmpty() && !found);
 		return found;
 	}
 }
