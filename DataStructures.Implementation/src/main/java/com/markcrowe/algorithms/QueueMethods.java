@@ -63,7 +63,7 @@ public class QueueMethods
 	{
 		while(!lhsQueue.isEmpty() && !rhsQueue.isEmpty())
 		{
-			T lhsQueueItem = lhsQueue.PeekAtFirstItem(), rhsQueueItem = rhsQueue.PeekAtFirstItem();
+			T lhsQueueItem = lhsQueue.peek(), rhsQueueItem = rhsQueue.peek();
 			mergedQueue.QueueItem((lhsQueueItem.compareTo(rhsQueueItem) < 0 ? lhsQueue : rhsQueue).Dequeue());
 		}
 		QueueMethods.emptyQueueInto(lhsQueue, mergedQueue);
