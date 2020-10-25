@@ -81,6 +81,7 @@ public class LinkedQueue<T> implements Queue<T>
 	 *
 	 * @param items
 	 */
+	@SuppressWarnings("unchecked")
 	public void QueueItems(T... items)
 	{
 		for(T item : items)
