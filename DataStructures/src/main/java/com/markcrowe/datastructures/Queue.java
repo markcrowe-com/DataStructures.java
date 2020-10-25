@@ -21,6 +21,10 @@ public interface Queue<T> extends Iterable<T>
 	 * @return
 	 */
 	Boolean isEmpty();
+	/**
+	 * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+	 * @return the head of this queue, or null if this queue is empty
+	 */
 	T peek();
 	T PeekAtLastItem();
 	void QueueItem(T item);
