@@ -21,7 +21,7 @@ public interface Queue<T> extends Iterable<T>
 	 * @return
 	 */
 	Boolean isEmpty();
-	T PeekAtFirstItem();
+	T peek();
 	T PeekAtLastItem();
 	void QueueItem(T item);
 
