@@ -33,9 +33,9 @@ public class LinkedQueue<T> implements Queue<T>
 		//return (this.size == 0);
 	}
 	@Override
-	public T PeekAtFirstItem()
+	public T peek()
 	{
-		return this.firstLinkInChain.getValue();
+		return this.firstLinkInChain == null ? null : this.firstLinkInChain.getValue();
 	}
 	@Override
 	public T PeekAtLastItem()
