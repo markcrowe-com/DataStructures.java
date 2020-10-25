@@ -126,7 +126,7 @@ public final class QueueAssignmentJFrame extends javax.swing.JFrame
 		if(this.HandleQueueIsEmpty());
 		else
 		{
-			Employee item = this.queue.PeekAtFirstItem();
+			Employee item = this.queue.peek();
 			this.PrintConsole("The First Item in the queue is:" + item.toString());
 		}
 	}
