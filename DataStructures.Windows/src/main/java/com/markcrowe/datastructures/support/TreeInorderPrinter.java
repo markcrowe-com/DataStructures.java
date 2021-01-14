@@ -51,9 +51,9 @@ public class TreeInorderPrinter<T>
 	{
 		BinarySearchNode<T> left = node.getNextLesserValueNode();
 		BinarySearchNode<T> right = node.getNextGreaterValueNode();
-		String string = node.getValue().toString();
+		String valueString = node.getValue().toString();
 
-		int length = string.length();
+		int length = valueString.length();
 		if(length % 2 == 0)
 		{
 			length--;
@@ -69,7 +69,7 @@ public class TreeInorderPrinter<T>
 					rightPrefix + lineAppend,
 					rightPrefix + blankAppend);
 		}
-		nodeString += nodePrefix + string + "\n";
+		nodeString += nodePrefix + valueString + "\n";
 		if(left != null)
 		{
 			leftPrefix += Strings.blank(length);

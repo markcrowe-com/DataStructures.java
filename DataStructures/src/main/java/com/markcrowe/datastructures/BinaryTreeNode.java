@@ -18,8 +18,6 @@ public interface BinaryTreeNode<T>
 	BinaryTreeNode<T> getLeftTree();
 	BinaryTreeNode<T> getRightTree();
 	T getValue();
-	BinaryTreeNode<T> setLeftTree(BinaryTreeNode<T> value);
-	BinaryTreeNode<T> setRightTree(BinaryTreeNode<T> value);
 	//
 	//	modifiers
 	//

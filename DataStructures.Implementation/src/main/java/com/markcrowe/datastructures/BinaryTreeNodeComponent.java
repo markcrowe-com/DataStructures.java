@@ -43,13 +43,11 @@ public class BinaryTreeNodeComponent<T, TComparator extends Comparator<T>> imple
 		return this.value;
 	}
 
-	@Override
 	public BinaryTreeNode<T> setLeftTree(BinaryTreeNode<T> value)
 	{
 		this.leftTree = value;
 		return this.leftTree;
 	}
-	@Override
 	public BinaryTreeNode<T> setRightTree(BinaryTreeNode<T> value)
 	{
 		this.rightTree = value;

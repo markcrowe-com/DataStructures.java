@@ -55,21 +55,6 @@ public class AvlTreeNodeComponent<T, TComparator extends Comparator<T>> implemen
 		this.rightTree = value;
 		return this.rightTree;
 	}
-	/**
-	 *
-	 * @param value
-	 * @return
-	 */
-	@Override
-	public BinaryTreeNode<T> setLeftTree(BinaryTreeNode<T> value)
-	{
-		return setLeftTree((AvlTreeNode<T>) value);
-	}
-	@Override
-	public BinaryTreeNode<T> setRightTree(BinaryTreeNode<T> value)
-	{
-		return setRightTree((AvlTreeNode<T>) value);
-	}
 	//
 	//	modifiers
 	//
