@@ -9,9 +9,9 @@ public class PrefixTreeCommandApp
 {
 	public PrefixTreeCommandApp()
 	{
-		prefixTree = null;
 		choice = 0;
 		leaveMenu = false;
+		prefixTree = null;
 	}
 	//
 	//	properties
@@ -31,29 +31,32 @@ public class PrefixTreeCommandApp
 	{
 		leaveMenu = false;
 
-		InitializeTree();
+		initializeTree();
 
+		displayMenu();
 		do
 		{
-			choice = DisplayMenu();
+			choice = getMenuChoice();
 			switch(choice)
 			{
 				case ClearTreeCode ->
-					ClearTree();
+					clearTree();
+				case DisplayMenuCode ->
+					displayMenu();
 				case DisplayTreeCode ->
-					DisplayTree();
+					displayTree();
 				case ExitProgramCode ->
-					ExitProgram();
+					exitProgram();
 				case InitializeTreeCode ->
-					InitializeTree();
+					initializeTree();
 				case InsertValueCode ->
-					InsertValue();
+					insertValue();
 				case RemoveValueCode ->
-					RemoveValue();
+					removeValue();
 				case SearchTreeCode ->
-					SearchTree();
+					searchTree();
 				default ->
-					HandleInvalidCode();
+					handleInvalidCode();
 			}
 		}
 		while(!leaveMenu);
@@ -61,7 +64,7 @@ public class PrefixTreeCommandApp
 	//
 	//	Methods
 	//
-	private void ClearTree()
+	private void clearTree()
 	{
 		prefixTree.clear();
 
@@ -69,67 +72,76 @@ public class PrefixTreeCommandApp
 		System.out.println("The Prefix Tree has been cleared.");
 		System.out.println("");
 	}
-	private void DisplayBanner()
+	private void displayBanner()
 	{
-		System.out.println("******************************************");
-		System.out.println("               Prefix Tree ");
-		System.out.println("******************************************");
-		System.out.println();
+		String banner = " ****************** Prefix Tree *******************";
+		System.out.println(banner);
 	}
-	int DisplayMenu()
+	void displayMenu()
 	{
-		int option;
-		DisplayBanner();
-		String menu = " " + DisplayTreeCode + " -> Display the Prefix Tree.\n"
-				+ " " + InsertValueCode + " -> Insert into Prefix Tree.\n"
-				+ " " + SearchTreeCode + " -> Search the Prefix Tree.\n"
-				+ " " + RemoveValueCode + " -> Delete from the Prefix Tree.\n"
-				+ " " + ClearTreeCode + " -> Clear the Prefix Tree.\n"
-				+ " " + InitializeTreeCode + " -> Initialize the Prefix Tree with default values.\n"
-				+ " " + ExitProgramCode + " -> Exit.\n\n"
-				+ "******************************************\n"
-				+ " \n  Enter your choice and press return: \n\n"
-				+ "******************************************\n";
-		System.out.println(menu);
+		displayBanner();
+		String menuString = """
+ ****************** Command Menu ******************
+ %d Display the Command Menu.
+ %d Display the Prefix Tree.
+ %d Insert into Prefix Tree.
+ %d Search the Prefix Tree.
+ %d Delete from the Prefix Tree.
+ %d Clear the Prefix Tree.
+ %d Initialize the Prefix Tree with default values.
+ %d Exit the program.
+ **************************************************
+""";
+		System.out.print(String.format(menuString,
+				DisplayMenuCode,
+				DisplayTreeCode,
+				InsertValueCode,
+				SearchTreeCode,
+				RemoveValueCode,
+				ClearTreeCode,
+				InitializeTreeCode,
+				ExitProgramCode));
+	}
+	int getMenuChoice()
+	{
+		displayBanner();
+		System.out.println(String.format(" Enter %d to Display the Command Menu.", DisplayMenuCode));
+		System.out.println(" Enter your choice and press return:");
 
-		Scanner scanner = new Scanner(System.in);
-		option = scanner.nextInt();
+		var scanner = new Scanner(System.in);
+		int option = scanner.nextInt();
 		return option;
 	}
-	void DisplayTree()
+	void displayTree()
 	{
-		DisplayBanner();
-
 		if(prefixTree.isEmpty())
 		{
 			System.out.println("The Prefix Tree is empty.");
-			System.out.println();
-			System.out.println();
 		}
 		else
 		{
 			System.out.println(prefixTree.toString());
-			System.out.println();
-			System.out.println();
 		}
 	}
-	void ExitProgram()
+	void exitProgram()
 	{
 		System.out.println("End of Program.");
 		leaveMenu = true;
 	}
-	void HandleInvalidCode()
+	void handleInvalidCode()
 	{
 		System.out.println("Not a Valid Choice. \n Please enter again! ");
 	}
-	void InitializeTree()
+	void initializeTree()
 	{
 		prefixTree.clear();
 		System.out.println("Initialize Prefix Tree:");
 		String namesValues[] =
 		{
-			"Tom", "Una", "Mary", "Zaki", "Tim", "Amy"
-		};	// { "Mark", "Ann", "Tom", "Sarah", "Simon" };
+			"Tom", "Mary", "Amy"
+		};
+		// { "Tom", "Una", "Mary", "Zaki", "Tim", "Amy" };
+		// { "Mark", "Ann", "Tom", "Sarah", "Simon" };
 		for(String value : namesValues)
 		{
 			prefixTree.insert(value.toLowerCase(), value);
@@ -138,7 +150,7 @@ public class PrefixTreeCommandApp
 		System.out.println(".");
 		System.out.println();
 	}
-	void InsertValue()
+	void insertValue()
 	{
 		String userInput;
 		do
@@ -156,13 +168,14 @@ public class PrefixTreeCommandApp
 		}
 		while(!ExitRoutineCode.equals(userInput));
 	}
-	void RemoveValue()
+	void removeValue()
 	{
 		String userInput;
 		System.out.println();
 		System.out.println("Please enter the name you would like to Delete:");
 		Scanner scanner = new Scanner(System.in);
 		userInput = scanner.nextLine();
+		userInput = userInput.toLowerCase();
 
 		if(prefixTree.remove(userInput, userInput))
 		{
@@ -173,7 +186,7 @@ public class PrefixTreeCommandApp
 			System.out.println("The Prefix Tree does not contain " + userInput + ".");
 		}
 	}
-	void SearchTree()
+	void searchTree()
 	{
 		String userInput;
 		do
@@ -183,6 +196,7 @@ public class PrefixTreeCommandApp
 			Scanner scanner = new Scanner(System.in);
 			userInput = scanner.nextLine();
 
+			userInput = userInput.toLowerCase();
 			if(!ExitRoutineCode.equals(userInput))
 			{
 				if(prefixTree.contains(userInput, userInput))
@@ -207,6 +221,7 @@ public class PrefixTreeCommandApp
 	//	Fields
 	//
 	private static final String ExitRoutineCode = "0";
+	private static final int DisplayMenuCode = 0;
 	private static final int DisplayTreeCode = 1;
 	private static final int InsertValueCode = 2;
 	private static final int SearchTreeCode = 3;
