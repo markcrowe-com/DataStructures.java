@@ -131,13 +131,15 @@ public class PrefixTreeComponent<T> implements PrefixTree<T>
 		{
 			text += key + System.lineSeparator();
 		}
-		for(int index = 0; index < alphabetSize; index++)
+		else
 		{
-			var currentNode = node.getBranch(index);
-			if(currentNode != null)
+			for(int index = 0; index < alphabetSize; index++)
 			{
-				key += (char) (index + this.alphabetStartIndex);
-				text += toString(node.getBranch(index), "" + key, treeLevel + 1);
+				var currentNode = node.getBranch(index);
+				if(currentNode != null)
+				{
+					text += toString(node.getBranch(index), key + (char) (index + this.alphabetStartIndex), treeLevel + 1);
+				}
 			}
 		}
 		return text;
