@@ -16,11 +16,11 @@ public class ApplicationMain
 {
 	public static void main(String args[])
 	{
-		runBinarySearchTreeAssignment();
+		//runBinarySearchTreeAssignment();
 		//runPriorityQueueAssignment();
 		//runQueueAssignment();
 		//runStackAssignment();
-		//runWeightedGraphAssignmentJFrame();
+		runWeightedGraphAssignmentJFrame();
 	}
 
 	public static void runStackAssignment()

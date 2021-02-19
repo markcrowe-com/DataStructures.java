@@ -25,7 +25,7 @@ public interface WeightedGraph<TVertex>
 	//
 	void ClearMarks();
 	void DeleteAllEdges();
-	Queue EdgeConnectedVertices(TVertex vertex);
+	Queue<TVertex> EdgeConnectedVertices(TVertex vertex);
 	boolean EdgeExists(TVertex startVertex, TVertex endVertex);
 	int WeightOfEdgeOf(TVertex startVertex, TVertex endVertex);
 

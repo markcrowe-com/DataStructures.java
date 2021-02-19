@@ -4,6 +4,7 @@
 package com.markcrowe.datastructures.windows;
 
 import com.markcrowe.algorithms.DepthFirstSearch;
+import com.markcrowe.algorithms.ShortestPathSearch;
 import com.markcrowe.datastructures.WeightedEdge;
 import com.markcrowe.datastructures.WeightedGraph;
 import com.markcrowe.datastructures.WeightedGraphClass;
@@ -18,9 +19,11 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
 {
 	public WeightedGraphAssignmentJFrame()
 	{
+		this.numberofairports = 5;//8;
+
 		graph = new WeightedGraphClass<>(this.numberofairports);
 		airportList = new Airport[numberofairports];
-		this.InitilizeGraph();
+		this.InitilizeGraph1();
 
 		this.theblackinsertpane = new WeightedGraphAssignmentAddFlightJFrame(this);
 		this.theblacksearchpane = new FlightSearchJFrame(this);
@@ -37,7 +40,7 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
 	public void AddEdgeToGraph(Airport startAirport, Airport endAirport, int distance)
 	{
 		this.ClearFlightDetailsConsole();
-		if(!startAirport.equals(endAirport))
+		if( ! startAirport.equals(endAirport))
 		{
 			if(this.graph.EdgeExists(startAirport, endAirport))
 			{
@@ -134,6 +137,34 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
 	//
 	//	private methods
 	//
+	private void InitilizeGraph1()
+	{
+		Airport v0 = this.airportList[0] = new Airport("0");
+		Airport v1 = this.airportList[1] = new Airport("1");
+		Airport v2 = this.airportList[2] = new Airport("2");
+		Airport v3 = this.airportList[3] = new Airport("3");
+		Airport v4 = this.airportList[4] = new Airport("4");
+
+		for(Airport airport : airportList)
+		{
+			this.graph.AddVertex(airport);
+		}
+
+		this.graph.AddEdge(v0, v1, 5);
+		this.graph.AddEdge(v0, v2, 3);
+		this.graph.AddEdge(v0, v4, 2);
+
+		this.graph.AddEdge(v1, v2, 2);
+		this.graph.AddEdge(v1, v3, 6);
+
+		this.graph.AddEdge(v2, v1, 1);
+		this.graph.AddEdge(v2, v3, 2);
+
+		this.graph.AddEdge(v4, v1, 6);
+		this.graph.AddEdge(v4, v2, 10);
+		this.graph.AddEdge(v4, v3, 3);
+
+	}
 	private void InitilizeGraph()
 	{
 		Airport atlanta = this.airportList[0] = new Airport("Atlanta");
@@ -188,7 +219,7 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
 	private String PrintPath(List<Airport> path)
 	{
 		String output = "Search Path:" + System.lineSeparator();
-		for(int index = 0; index < path.size(); index++)
+		for(int index = 0; index < path.size(); index ++)
 		{
 			output += path.get(index).Name() + "-->";
 		}
@@ -219,7 +250,7 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
 	//
 	public final Airport[] airportList;
 	public WeightedGraph<Airport> graph;
-	private final int numberofairports = 8;
+	private final int numberofairports;
 	public DepthFirstSearch<Airport> searchMethod = new DepthFirstSearch<>();
 	//
 	//	custom frames
@@ -244,6 +275,7 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         deleteButton1 = new javax.swing.JButton();
+        shortestFlightButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -327,6 +359,18 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
             }
         });
 
+        shortestFlightButton.setBackground(new java.awt.Color(0, 0, 0));
+        shortestFlightButton.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        shortestFlightButton.setForeground(new java.awt.Color(255, 255, 255));
+        shortestFlightButton.setText("Shortest Flights");
+        shortestFlightButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                shortestFlightButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -345,7 +389,8 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
-                            .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(shortestFlightButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -358,22 +403,22 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(deleteButton))
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteButton1)
+                    .addComponent(shortestFlightButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(exitButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addButton, deleteButton, deleteButton1, exitButton});
@@ -410,6 +455,12 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
 		this.PrintFlightList(this.PrintEdges());
     }//GEN-LAST:event_deleteButton1ActionPerformed
 
+    private void shortestFlightButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_shortestFlightButtonActionPerformed
+    {//GEN-HEADEREND:event_shortestFlightButtonActionPerformed
+		var algoritm = new ShortestPathSearch<Airport>();
+		algoritm.PrintShortestPaths(graph, this.airportList[0]);
+    }//GEN-LAST:event_shortestFlightButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
@@ -422,6 +473,7 @@ public final class WeightedGraphAssignmentJFrame extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton searchButton;
+    private javax.swing.JButton shortestFlightButton;
     // End of variables declaration//GEN-END:variables
 
 }
